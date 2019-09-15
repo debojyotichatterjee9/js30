@@ -111,7 +111,7 @@ console.log(`%c Array Cardio`, `font-size: 50px;
        1px 1px 0 grey;
 			 `);
 
-console.group(`%cVariables Declared`, `font-size: 14px; color: #030d47`);
+console.group(`%cVariables Declared`, `font-size: 14px; color: #4888f0`);
 console.groupCollapsed(`%cDeclared Array of Object`, `font-size: 13px; color: #f03a3a`)
 console.log(inventors);
 console.groupEnd();
@@ -127,7 +127,7 @@ console.groupEnd();
 
 		const fifteen = inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600);
 
-		console.groupCollapsed(`%c1. Array.prototype.filter()`, `font-size: 14px; color: #030d47`);
+		console.groupCollapsed(`%c1. Array.prototype.filter()`, `font-size: 14px; color: #4888f0`);
 		console.log(`//# Filter the list of inventors for those who were born in the 1500's.
 		const fifteen = inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600);
 		console.table(fifteen);
@@ -141,7 +141,7 @@ console.groupEnd();
 
 		const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
 
-		console.groupCollapsed(`%c2. Array.prototype.map()`, `font-size: 14px; color: #030d47`);
+		console.groupCollapsed(`%c2. Array.prototype.map()`, `font-size: 14px; color: #4888f0`);
 		console.log("//# Give us an array of the inventors' first and last names.\n\tconst fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);\n\tconsole.log(fullNames);\n");
 
     console.log(fullNames);
@@ -162,7 +162,7 @@ console.groupEnd();
 
     const orderedList = inventors.sort((a, b) => a.year > b.year ? 1 : -1);
 
-		console.groupCollapsed(`%c3. Array.prototype.sort() - Ascending`, `font-size: 14px; color: #030d47`);
+		console.groupCollapsed(`%c3. Array.prototype.sort() - Ascending`, `font-size: 14px; color: #4888f0`);
 		console.log("//# Sort the inventors by birthdate, oldest to youngest.")
 		console.log("const orderedList = inventors.sort(function (a, b) {\n\tif (a.year > b.year) {\n\t\treturn 1;\n\t}\n\telse {\n\t\treturn -1;\n\t}\n})");
 		console.log("\nAlternate Solution using Ternary operator\n")
@@ -180,7 +180,7 @@ console.groupEnd();
     	return total + (inventor.passed - inventor.year)
     }, 0);
 
-		console.groupCollapsed(`%c4. Array.prototype.reduce()`, `font-size: 14px; color: #030d47`);
+		console.groupCollapsed(`%c4. Array.prototype.reduce()`, `font-size: 14px; color: #4888f0`);
 		console.log("//# How many years did all the inventors live?");
 		console.log("const totalYears = inventors.reduce((total, inventor) => {\n\treturn total + (inventor.passed - inventor.year)\n\t}, 0);");
 
@@ -195,7 +195,7 @@ console.groupEnd();
     	return last > next ? -1 : 1;
     });
 
-		console.groupCollapsed(`%c5. Array.prototype.sort()`, `font-size: 14px; color: #030d47`);
+		console.groupCollapsed(`%c5. Array.prototype.sort()`, `font-size: 14px; color: #4888f0`);
 		console.log("//# Sort the inventors by years lived.");
 		console.log("const oldest = inventors.sort(function (a, b) {\n\tconst last = a.passed - a.year;\n\tconst next = b.passed - b.year;\n\treturn last > next ? -1 : 1;\n});")
 
@@ -213,7 +213,7 @@ console.groupEnd();
     // 				.filter(streetName => streetName.includes('de'));
     // console.log(de);
 
-		console.groupCollapsed(`%c6. Array.Prototype.map() and Array.Prototype.filter()`, `font-size: 14px; color: #030d47`);
+		console.groupCollapsed(`%c6. Array.Prototype.map() and Array.Prototype.filter()`, `font-size: 14px; color: #4888f0`);
 		console.log(`//# Visit: https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 			Create a list of Boulevards in Paris that contain 'de' anywhere in the name
 			Run the following code in the consoel of the Wikipedia Page:
@@ -233,7 +233,7 @@ console.groupEnd();
     	return alast > bnext ? 1 : -1
     });
 
-		console.groupCollapsed(`%c7. Array.Prototype.sort()`, `font-size: 14px; color: #030d47`);
+		console.groupCollapsed(`%c7. Array.Prototype.sort()`, `font-size: 14px; color: #4888f0`);
 		console.log(`//# Sort the people alphabetically by last name.`)
 		console.log("const alpha = people.sort((last, next) => {\n\tconst [alast, afirst] = last.split(', ');\n\tconst [bnext, bfirst] = next.split(', ');\n\treturn alast > bnext ? 1 : -1\n});");
 
@@ -251,7 +251,7 @@ console.groupEnd();
     	return obj;
     }, {});
 
-		console.groupCollapsed(`%c8. Array.Prototype.reduce()`, `font-size: 14px; color: #030d47`);
+		console.groupCollapsed(`%c8. Array.Prototype.reduce()`, `font-size: 14px; color: #4888f0`);
 		console.log(`//# Sum up the instances of each of data array.`)
 		console.log("const transportation = data.reduce((obj, item) => {\n\tif (!obj[item]) {\n\t\t	obj[item] = 0;\n\t}\n\tobj[item]++;\n\treturn obj;\n}, {});");
 

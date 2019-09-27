@@ -37,18 +37,35 @@
   			 `);
 
 
+/*------------------------------------------------------------------STRINGS NUMBERS AND BOOLEANS------------------------------------------------------------------*/
+    console.groupCollapsed(`%cNumbers and Booleans`, `font-size: 14px; color: #4888f0`)
     // start with strings, numbers and booleans
+    console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`)
+    console.log("let num1 = 50;\nlet num2 = num1;\nconsole.log(`First Number:${num1} Second Number: ${num2}`);\nnum2 = 100;\nconsole.log(`After re-assigning First Number as 100...\nFirst Number:${num1}\nSecond Number: ${num2}`);")
+
     let num1 = 50;
     let num2 = num1
-    console.log(`First Number:${num1} Second Number: ${num2}`);
-    num1 = 100;
+    console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`)
+    console.log(`
+First Number:${num1}
+Second Number: ${num2}`);
+    num2 = 100;
     console.log(`After reassigning First Number as 100...
-    First Number:${num1} Second Number: ${num2}`);
+First Number:${num1}
+Second Number: ${num2}`);
+console.log(`%cWe see that the num1 does not change when we re-assign the value of num2.
+Here num2 is a not a reference to the variable num1.`, `font-size: 12px; color: #f03a3a`)
+    console.groupEnd();
+
+/*------------------------------------------------------------------ARRAYS------------------------------------------------------------------*/
+console.groupCollapsed(`%cArrays`, `font-size: 14px; color: #4888f0`)
     // Let's take an array
-    const animals = ['🦁', '🐱', '🦊', '🐼', '🐻', '🐷'];
+console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`)
+console.log("const dogs = ['Tim', 'Tiger', 'Lucy', 'Poppy', 'Max', 'Ryder'];\nconst pets = dogs;\nconsole.log(` Old Array: ${dogs} New Array: ${pets}`);\npets[2] = 'Terminator';\nconsole.log(` Old Array: ${dogs} New Array: ${pets}`);")
     const dogs = ['Tim', 'Tiger', 'Lucy', 'Poppy', 'Max', 'Ryder'];
     // and we want to make a copy of it.
     const pets = dogs; // so we copied the array dogs in the array pets
+    console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`)
     console.log(`
     Old Array: ${dogs}
     New Array: ${pets}`);
@@ -58,45 +75,71 @@
     console.log(`
     Old Array: ${dogs}
     New Array: ${pets}`);
-    // so whatever we change in the new array is referenced in the old array as well, which was not the case in the first example
-    // You might think we can just do something like this:
-    // however what happens when we update that array?
-    // now here is the problem!
-    // oh no - we have edited the original array too!
-    // Why? It's because that is an array reference, not an array copy. They both point to the same array!
-    // So, how do we fix this? We take a copy instead!
 
+    console.log(`%cSo whatever we change in the new array is referenced in the old array as well, which was not the case in the first example
+You might think we can just do something like this:
+however what happens when we update that array?
+now here is the problem!
+oh no - we have edited the original array too!
+Why? Its because that is an array reference, not an array copy. They both point to the same array!
+So, how do we fix this? We take a copy instead!`, `font-size: 12px; color: #f03a3a`);
+
+console.groupCollapsed(`%cArray.Prototype.slice() method`, `font-size: 14px; color: #4888f0`)
+console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`)
+console.log("const pets1 = dogs.slice();\npets1[2] = 'Fireblazer';\nconsole.log(` Old Array: ${dogs} New Array: ${pets1}`);")
     // use the Array.Prototype.slice() method
     const pets1 = dogs.slice();
+console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`)
     pets1[2] = 'Fireblazer';
     console.log(`
     Old Array: ${dogs}
     New Array: ${pets1}`);
+console.groupEnd();
 
+console.groupCollapsed(`%cArray.concat() method`, `font-size: 14px; color: #4888f0`)
+console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`)
+console.log("const pets2 = [].concat(dogs);\npets2[2] = \"Watercannon\";\nconsole.log(` Old Array: ${dogs} New Array: ${pets2}`);")
     // we can also create a new array and concat the old one in
     const pets2 = [].concat(dogs);
-    pets2[2] = "Watercannon"
+console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`)
+    pets2[2] = "Watercannon";
     console.log(`
     Old Array: ${dogs}
     New Array: ${pets2}`);
+console.groupEnd();
 
+console.groupCollapsed(`%cES6 Spread method`, `font-size: 14px; color: #4888f0`)
+console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`)
+console.log("const pets3 = [...dogs];\npets3[2] = \"Windbreaker\";\nconsole.log(` Old Array: ${dogs} New Array: ${pets3}`);")
     // we can also use the new ES6 Spread
-    const pets3 = [...dogs]
-    pets3[2] = "Windbreaker"
+    const pets3 = [...dogs];
+    pets3[2] = "Windbreaker";
+console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`)
     console.log(`
     Old Array: ${dogs}
     New Array: ${pets3}`);
+console.groupEnd();
 
+console.groupCollapsed(`%cArray.from() method`, `font-size: 14px; color: #4888f0`)
+console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`)
+console.log("const pets4 = Array.from(dogs);\npets4[2] = \"Mudmoulder\";\nconsole.log(` Old Array: ${dogs} New Array: ${pets4}`);")
     // we can use the Array.from() method to makea  new array
     const pets4 = Array.from(dogs);
     pets4[2] = 'Mudmoulder';
+console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`)
     console.log(`
     Old Array: ${dogs}
     New Array: ${pets4}`);
+console.groupEnd();
+console.log(`%cNow when we update it, the original one isn't changed The same thing goes for objects, let's say we have a person object with properties`, `font-size: 12px; color: #f03a3a`)
+console.groupEnd();
 
-    // now when we update it, the original one isn't changed
-    // The same thing goes for objects, let's say we have a person object
-    // with Objects
+
+/*------------------------------------------------------------------OBJECTS------------------------------------------------------------------*/
+
+console.groupCollapsed(`%cObjects`, `font-size: 14px; color: #4888f0`)
+console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`)
+console.log("const person = { name: 'Fred Barner', age: 40, };\nconst employee1 = person; person.id = `846531`;\nconsole.log(` Old Object: ${JSON.stringify(person)} New Objejct: ${JSON.stringify(employee1)}`);");
     const person = {
       name: 'Fred Barner',
       age: 40,
@@ -104,33 +147,50 @@
     // and think we make a copy:
     const employee1 = person;
 
-    person.id = `846531`
+    person.id = `846531`;
 
     // now lets check both the object contents
+    console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`)
     console.log(`
     Old Object:
     ${JSON.stringify(person)}
     New Objejct:
     ${JSON.stringify(employee1)}`);
 
+console.log(`%cNow when we update it, the original one is also changed. How do we take a copy instead?`, `font-size: 12px; color: #f03a3a`)
     // how do we take a copy instead?
+
+console.groupCollapsed(`%cObject.assign() method`, `font-size: 14px; color: #4888f0`)
+console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`);
+console.log("const employee2 = Object.assign({}, person, {location: 'Germany'});\nconsole.log(` Old Object: ${JSON.stringify(person)} New Objejct: ${JSON.stringify(employee2)}`);");
+
     const employee2 = Object.assign({}, person, {location: 'Germany'});
 
+console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`)
     console.log(`
     Old Object:
     ${JSON.stringify(person)}
     New Objejct:
     ${JSON.stringify(employee2)}`);
+console.groupEnd();
 
+console.groupCollapsed(`%cES6 Spread method`, `font-size: 14px; color: #4888f0`)
+console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`);
+console.log("const employee3 = {...person};\nemployee3.designation = 'Manager';\nconsole.log(` Old Object: ${JSON.stringify(person)} New Objejct: ${JSON.stringify(employee3)}`);");
     // We will hopefully soon see the object ...spread
-    const employee3 = {...person}
-    employee3.designation = 'Manager'
+    const employee3 = {...person};
+    employee3.designation = 'Manager';
 
+console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`)
     console.log(`
     Old Object:
     ${JSON.stringify(person)}
     New Objejct:
     ${JSON.stringify(employee3)}`);
+console.groupEnd();
+console.groupEnd();
+
+console.log(`%cThings to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it. Now lets try and see what we get in the deep coning of an Object`, `font-size: 12px; color: #f03a3a`)
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
 
     // Now lets try and see what we get in the deep coning of an Object

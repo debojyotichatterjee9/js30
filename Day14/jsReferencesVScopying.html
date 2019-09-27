@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript References VS Copying</title>
+  </head>
+  <body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+<body>
+
+  <style type="text/css">
+  	html {
+    background: url(./background/instruction.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  </style>
+
+  <script type="text/javascript">
+
+  console.log(`%c JS References VS Copying`, `font-size: 35px;
+  	-webkit-text-stroke: 1px black;
+     color: white;
+     text-shadow:
+         3px 3px 0 grey,
+       -1px -1px 0 grey,
+        1px -1px 0 grey,
+        -1px 1px 0 grey,
+         1px 1px 0 grey;
+  			 `);
+
+
+    // start with strings, numbers and booleans
+    let num1 = 50;
+    let num2 = num1
+    console.log(`First Number:${num1} Second Number: ${num2}`);
+    num1 = 100;
+    console.log(`After reassigning First Number as 100...
+    First Number:${num1} Second Number: ${num2}`);
+    // Let's take an array
+    const animals = ['🦁', '🐱', '🦊', '🐼', '🐻', '🐷'];
+    const dogs = ['Tim', 'Tiger', 'Lucy', 'Poppy', 'Max', 'Ryder'];
+    // and we want to make a copy of it.
+    const pets = dogs; // so we copied the array dogs in the array pets
+    console.log(`
+    Old Array: ${dogs}
+    New Array: ${pets}`);
+    // now lets update a element of the new copied Array
+    pets[2] = 'Terminator';
+    // lets check what we have in each array now...
+    console.log(`
+    Old Array: ${dogs}
+    New Array: ${pets}`);
+    // so whatever we change in the new array is referenced in the old array as well, which was not the case in the first example
+    // You might think we can just do something like this:
+    // however what happens when we update that array?
+    // now here is the problem!
+    // oh no - we have edited the original array too!
+    // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+    // So, how do we fix this? We take a copy instead!
+
+    // use the Array.Prototype.slice() method
+    const pets1 = dogs.slice();
+    pets1[2] = 'Fireblazer';
+    console.log(`
+    Old Array: ${dogs}
+    New Array: ${pets1}`);
+
+    // we can also create a new array and concat the old one in
+    const pets2 = [].concat(dogs);
+    pets2[2] = "Watercannon"
+    console.log(`
+    Old Array: ${dogs}
+    New Array: ${pets2}`);
+
+    // we can also use the new ES6 Spread
+    const pets3 = [...dogs]
+    pets3[2] = "Windbreaker"
+    console.log(`
+    Old Array: ${dogs}
+    New Array: ${pets3}`);
+
+    // we can use the Array.from() method to makea  new array
+    const pets4 = Array.from(dogs);
+    pets4[2] = 'Mudmoulder';
+    console.log(`
+    Old Array: ${dogs}
+    New Array: ${pets4}`);
+
+    // now when we update it, the original one isn't changed
+    // The same thing goes for objects, let's say we have a person object
+    // with Objects
+    const person = {
+      name: 'Fred Barner',
+      age: 40,
+    };
+    // and think we make a copy:
+    const employee1 = person;
+
+    person.id = `846531`
+
+    // now lets check both the object contents
+    console.log(`
+    Old Object:
+    ${JSON.stringify(person)}
+    New Objejct:
+    ${JSON.stringify(employee1)}`);
+
+    // how do we take a copy instead?
+    const employee2 = Object.assign({}, person, {location: 'Germany'});
+
+    console.log(`
+    Old Object:
+    ${JSON.stringify(person)}
+    New Objejct:
+    ${JSON.stringify(employee2)}`);
+
+    // We will hopefully soon see the object ...spread
+    const employee3 = {...person}
+    employee3.designation = 'Manager'
+
+    console.log(`
+    Old Object:
+    ${JSON.stringify(person)}
+    New Objejct:
+    ${JSON.stringify(employee3)}`);
+    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+    // Now lets try and see what we get in the deep coning of an Object
+
+    const car = {
+      name: 'BMW Z4 Roadster',
+      transmission: 'Automatic',
+      fuel: 'Petrol',
+      specs: {
+        gearbox: 8,
+        engine: 'TwinPower Turbo 6-cylinder',
+        power: '335bhp@5000-6500rpm',
+        cylinders: 6,
+        topspeed: '250kmph',
+        mileage: '14kmpl'
+      }
+    };
+
+    console.log(car)
+    const copyCar = Object.assign({}, car);
+    copyCar.fuel = 'Diesel';
+
+    console.log(`
+    Old Object:
+    ${JSON.stringify(car)}
+    New Objejct:
+    ${JSON.stringify(copyCar)}`);
+    // you will see that the fule property of new copied object has been changed but the parent object remains unaltered
+
+    // now lets try to change a nested property of the same object
+    copyCar.specs.gearbox = 10;
+
+    console.log(`
+    Old Object:
+    ${JSON.stringify(car)}
+    New Objejct:
+    ${JSON.stringify(copyCar)}`);
+    /* note that the "gearbox" property of both the objects new and parent have changed.
+    now how do we acheive the solution to the above problem???
+    you can search for a deep cloning function on the web and I will also show an example of the same here very solution
+    another solution we have is called the "Poor Man's Deep Cloning method..." */
+
+    const poorCopyCar = JSON.parse(JSON.stringify(car));
+    poorCopyCar.specs.gearbox = 20;
+
+    console.log(`
+    Old Object:
+    ${JSON.stringify(car)}
+    New Objejct:
+    ${JSON.stringify(poorCopyCar)}`);
+
+    /* you will see that the "gearbox" property in the original object object is not changed but in the new object has been changed
+    so you are basically converting the object into a flat string and
+    immediately converting it again to an objec thus removing all the references to the original parent object. */
+
+
+  </script>
+
+</body>
+</html>
+  </body>
+</html>

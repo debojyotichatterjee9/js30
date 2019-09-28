@@ -166,7 +166,7 @@ console.log("const employee2 = Object.assign({}, person, {location: 'Germany'});
 
     const employee2 = Object.assign({}, person, {location: 'Germany'});
 
-console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`)
+console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`)
     console.log(`
     Old Object:
     ${JSON.stringify(person)}
@@ -190,8 +190,15 @@ console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`)
 console.groupEnd();
 console.groupEnd();
 
-console.log(`%cThings to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it. Now lets try and see what we get in the deep coning of an Object`, `font-size: 12px; color: #f03a3a`)
+
+/*------------------------------------------------------------------DEEP CLONING------------------------------------------------------------------*/
+console.groupCollapsed(`%cDeep Cloning`, `font-size: 14px; color: #4888f0`);
+console.log(`%cThings to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it. Now lets try and see what we get in the deep coning of an Object.`, `font-size: 12px; color: #f03a3a`)
+console.log(`%c\nNow lets try and see what we get in the deep coning of an Object`, `font-size: 12px; color: #f03a3a`)
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+    console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`);
+    console.log("const car = {\nname: 'BMW Z4 Roadster',\ntransmission: 'Automatic',\nfuel: 'Petrol',\nspecs: {\n\tgearbox: 8,\n\tengine: 'TwinPower Turbo 6-cylinder',\n\tpower: '335bhp@5000-6500rpm',\n\tcylinders: 6,\n\ttopspeed: '250kmph',\n\tmileage: '14kmpl'\n\t}\n};\nconsole.log(car);\nconst copyCar = Object.assign({}, car);\ncopyCar.fuel = 'Diesel';\nconsole.log(` Old Object: ${JSON.stringify(car)} New Objejct: ${JSON.stringify(copyCar)}`);");
 
     // Now lets try and see what we get in the deep coning of an Object
 
@@ -209,6 +216,7 @@ console.log(`%cThings to note - this is only 1 level deep - both for Arrays and 
       }
     };
 
+console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`);
     console.log(car)
     const copyCar = Object.assign({}, car);
     copyCar.fuel = 'Diesel';
@@ -218,24 +226,40 @@ console.log(`%cThings to note - this is only 1 level deep - both for Arrays and 
     ${JSON.stringify(car)}
     New Objejct:
     ${JSON.stringify(copyCar)}`);
-    // you will see that the fule property of new copied object has been changed but the parent object remains unaltered
+
+console.log(`%c\nYou will see that the fuel property of new copied object has been changed but the parent object remains unaltered.\nNow lets try to change a nested property of the same object.`, `font-size: 12px; color: #f03a3a`)
+    // you will see that the fuel property of new copied object has been changed but the parent object remains unaltered
 
     // now lets try to change a nested property of the same object
+
+    console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`)
+    console.log("copyCar.specs.gearbox = 10;\nconsole.log(` Old Object: ${JSON.stringify(car)} New Objejct: ${JSON.stringify(copyCar)}`);")
+
     copyCar.specs.gearbox = 10;
 
+console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`)
     console.log(`
     Old Object:
     ${JSON.stringify(car)}
     New Objejct:
     ${JSON.stringify(copyCar)}`);
+
+    console.log(`%c**Note that the "gearbox" property of both the objects new and parent have changed.
+now how do we acheive the solution to the above problem???
+you can search for a deep cloning function on the web and I will also show an example of the same here very soon..
+Another solution we have is called the "Poor Man's Deep Cloning method"...`, `font-size: 12px; color: #f03a3a`);
     /* note that the "gearbox" property of both the objects new and parent have changed.
     now how do we acheive the solution to the above problem???
     you can search for a deep cloning function on the web and I will also show an example of the same here very solution
-    another solution we have is called the "Poor Man's Deep Cloning method..." */
+    another solution we have is called the "Poor Man's Deep Cloning method"... */
+
+console.log(`\n%cCODE`, `font-size: 12px; color: #f03a3a`)
+console.log("const poorCopyCar = JSON.parse(JSON.stringify(car));\npoorCopyCar.specs.gearbox = 20;\nconsole.log(` Old Object: ${JSON.stringify(car)} New Objejct: ${JSON.stringify(poorCopyCar)}`);");
 
     const poorCopyCar = JSON.parse(JSON.stringify(car));
     poorCopyCar.specs.gearbox = 20;
 
+console.log(`\n%cOUTPUT`, `font-size: 12px; color: #f03a3a`)
     console.log(`
     Old Object:
     ${JSON.stringify(car)}
@@ -245,7 +269,10 @@ console.log(`%cThings to note - this is only 1 level deep - both for Arrays and 
     /* you will see that the "gearbox" property in the original object object is not changed but in the new object has been changed
     so you are basically converting the object into a flat string and
     immediately converting it again to an objec thus removing all the references to the original parent object. */
-
+console.log(`%cYou will see that the "gearbox" property in the original object object is not changed but in the new object has been changed
+so you are basically converting the object into a flat string and
+immediately converting it again to an objec thus removing all the references to the original parent object.`, `font-size: 12px; color: #f03a3a`);
+console.groupEnd();
 
   </script>
 

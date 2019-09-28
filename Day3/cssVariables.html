@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Scoped CSS Variables and JS</title>
+	<title>🌈Scoped CSS Variables and JS</title>
 </head>
 <body>
 <h2>Update CSS variables with <span class="hl">JS</span></h2>
@@ -57,11 +57,11 @@
 	}
 </style>
 <script type="text/javascript">
-	
+
 	const inputElements = document.querySelectorAll('.controls input');
 
 	function handleUpdate () {
-		
+
 		const suffix = this.dataset.sizing || '';
 		document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
 	}

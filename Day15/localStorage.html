@@ -140,6 +140,7 @@ function deleteAll(e) {
     checkBox.forEach((box, index) => {
       if (box.checked == true) {
         taskItems[index].remove();
+        console.log(items[index]);
         items.splice(index,1);
         localStorage.setItem('items', JSON.stringify(items));
       }

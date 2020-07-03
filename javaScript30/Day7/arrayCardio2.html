@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>🌈Array Cardio 2</title>
+</head>
+
+<body>
+  <style type="text/css">
+    html {
+      background: url(./background/instruction.png) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  </style>
+  <script type="text/javascript">
+    //---------------------------------------------------------VARIABLE DECLARATIONS---------------------------------------------------------//
+
+    const people = [{
+        name: 'Wes',
+        year: 1988
+      },
+      {
+        name: 'Kait',
+        year: 1986
+      },
+      {
+        name: 'Irv',
+        year: 1970
+      },
+      {
+        name: 'Lux',
+        year: 2015
+      }
+    ];
+    const comments = [{
+        text: 'Love this!',
+        id: 523423
+      },
+      {
+        text: 'Super good',
+        id: 823423
+      },
+      {
+        text: 'You are the best',
+        id: 2039842
+      },
+      {
+        text: 'Ramen is my fav food ever',
+        id: 123523
+      },
+      {
+        text: 'Nice Nice Nice!',
+        id: 542328
+      }
+    ];
+
+    //---------------------------------------------------------FUNCTIONS AND LOGS---------------------------------------------------------//
+
+    console.log(`%c Array Cardio II`, `font-size: 50px;
+    	-webkit-text-stroke: 1px black;
+       color: white;
+       text-shadow:
+           3px 3px 0 grey,
+         -1px -1px 0 grey,
+          1px -1px 0 grey,
+          -1px 1px 0 grey,
+           1px 1px 0 grey;
+    			 `);
+
+    console.group(`%cVariables Declared`, `font-size: 14px; color: #030d47`);
+    console.group(`%cDeclared Array of Objects`, `font-size: 13px; color: #f03a3a`)
+    console.log(people);
+    console.log(comments);
+    console.groupEnd();
+    console.groupEnd();
+
+    //1. Some and Every Checks
+
+    // Array.prototype.some() // is at least one person 19 or older?
+    const currentYear = (new Date()).getFullYear();
+    const isAdult = people.some((person) => {
+      if (currentYear - person.year >= 19)
+        return true
+    });
+
+    console.groupCollapsed(`%c1. Array.prototype.some()`, `font-size: 14px; color: #4888f0`);
+    console.log(`//# Is at least one person 19 or older?.
+        const currentYear = (new Date()).getFullYear();
+        const isAdult = people.some((person) => {
+          if(currentYear - person.year >= 19)
+          return true
+        });
+  		`);
+
+
+    console.log({
+      isAdult
+    }); // putting curly braces in the log gives you the variable name and the output in a key-value format
+
+    /* shortened code using implicit return*/
+    const isAdult2 = people.some(person => (currentYear - person.year) >= 19);
+
+    console.log(`%cAbove code can be shortened using implicit return:`, `font-size: 12px; font-weight: bold;`)
+    console.log(`const isAdult2 = people.some(person => (currentYear - person.year) >= 19);
+        console.log({isAdult2});`);
+
+    console.log({
+      isAdult2
+    });
+    console.groupEnd();
+
+    //2. Array.prototype.every() // is everyone 19 or older?
+
+    const allAdult = people.every(person => (currentYear - person.year) >= 19);
+
+    console.groupCollapsed(`%c2. Array.prototype.every()`, `font-size: 14px; color: #4888f0`);
+    console.log(`//# Is everyone 19 or older??.
+      const allAdult = people.every(person => (currentYear - person.year) >= 19);
+      console.log({allAdult});
+    `);
+
+    console.log({
+      allAdult
+    });
+
+    // is everyone older than 2?
+    const allAdult2 = people.every(person => (currentYear - person.year) >= 2);
+
+    console.log(`//# Is everyone older than 2??.
+      const allAdult2 = people.every(person => (currentYear - person.year) >= 2);
+      console.log({allAdult2});
+    `);
+
+    console.log({
+      allAdult2
+    });
+    console.groupEnd();
+    //3. Array.prototype.find()
+    // Find is like filter, but instead returns just the one you are looking for
+    // find the comment with the ID of 823423
+
+    const comment = comments.find(comment => comment.id === 823423);
+
+    console.groupCollapsed(`%c3. Array.prototype.find()`, `font-size: 14px; color: #4888f0`);
+    console.log(`Find is like filter, but instead returns just the one you are looking for.
+    //# Find the comment with the ID of 823423.
+      const comment = comments.find(comment => comment.id === 823423);
+      console.log(comment);
+    `);
+
+    console.log(comment);
+
+    //Just checking how Array.prototype.filter() would return the result
+    const comment2 = comments.filter(comment => comment.id === 823423);
+
+    console.log(`%cJust checking how Array.prototype.filter() would return the result:`, `font-size: 12px; font-weight: bold;`)
+    console.log(`const comment2 = comments.filter(comment => comment.id === 823423);
+      console.log(comment2);
+    `);
+    console.log(comment2);
+    console.groupEnd();
+    // Array.prototype.findIndex()
+    // Find the comment with this ID
+    // delete the comment with the ID of 823423
+
+    const index = comments.findIndex(comment => comment.id === 823423);
+
+    console.groupCollapsed(`%c3. Array.prototype.find()`, `font-size: 14px; color: #4888f0`);
+    console.log(`//# Find the comment with the ID of 823423 and delete it.
+    const index = comments.findIndex(comment => comment.id === 823423);
+    console.log("Index of the selected comment with id 823423: " + index);
+    console.log("Removed Comment:\n");
+    console.log(...(comments.splice(index, 1)));
+    console.log("Remaining Comments:\n");
+    console.table(comments);
+    `);
+
+    console.log("Index of the selected comment with id 823423: " + index);
+    console.log("Removed Comment:\n");
+    console.log(...(comments.splice(index, 1)));
+    console.log("Remaining Comments:\n");
+    console.table(comments);
+    console.log(`%cNote: You should also have a look at how Array.prototype.slice() works`, `font-size: 12px; font-weight: bold;`)
+    console.groupEnd();
+    // comments.splice(index, 1);
+    // console.log(comments);
+  </script>
+</body>
+
+</html>

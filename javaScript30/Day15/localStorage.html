@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>🌈Local Storage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!--
+         Fish SVG Cred:
+         https://thenounproject.com/search/?q=fish&i=589236
+      -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <path fill="#ee3e54" d="M13 27A2 2 0 1 0 13 31A2 2 0 1 0 13 27Z"></path>
+  <path fill="#f1bc19" d="M77 12A1 1 0 1 0 77 14A1 1 0 1 0 77 12Z"></path>
+  <path fill="#fce0a2" d="M50 13A37 37 0 1 0 50 87A37 37 0 1 0 50 13Z"></path>
+  <path fill="#f1bc19" d="M83 11A4 4 0 1 0 83 19A4 4 0 1 0 83 11Z"></path>
+  <path fill="#ee3e54" d="M87 22A2 2 0 1 0 87 26A2 2 0 1 0 87 22Z"></path>
+  <path fill="#fbcd59" d="M81 74A2 2 0 1 0 81 78 2 2 0 1 0 81 74zM15 59A4 4 0 1 0 15 67 4 4 0 1 0 15 59z"></path>
+  <path fill="#ee3e54" d="M25 85A2 2 0 1 0 25 89A2 2 0 1 0 25 85Z"></path>
+  <path fill="#fff" d="M18.5 51A2.5 2.5 0 1 0 18.5 56A2.5 2.5 0 1 0 18.5 51Z"></path>
+  <path fill="#f1bc19" d="M21 66A1 1 0 1 0 21 68A1 1 0 1 0 21 66Z"></path>
+  <path fill="#fff" d="M80 33A1 1 0 1 0 80 35A1 1 0 1 0 80 33Z"></path>
+  <path fill="#77cbd2" d="M35,72.3c-4.025,0-7.3-3.274-7.3-7.3V35c0-4.025,3.274-7.3,7.3-7.3h30c4.025,0,7.3,3.274,7.3,7.3 v30c0,4.025-3.274,7.3-7.3,7.3H35z"></path>
+  <path fill="#472b29"
+    d="M65,28.4c3.639,0,6.6,2.961,6.6,6.6v30c0,3.639-2.961,6.6-6.6,6.6H35c-3.639,0-6.6-2.961-6.6-6.6 V35c0-3.639,2.961-6.6,6.6-6.6H65 M65,27H35c-4.4,0-8,3.6-8,8v30c0,4.4,3.6,8,8,8h30c4.4,0,8-3.6,8-8V35C73,30.6,69.4,27,65,27 L65,27z"></path>
+  <path fill="none" d="M68.5,47.875v1.75V64c0,2.475-2.025,4.5-4.5,4.5H36c-2.475,0-4.5-2.025-4.5-4.5V36 c0-2.475,2.025-4.5,4.5-4.5h25.375H64c2.475,0,4.5,2.025,4.5,4.5v3.375v2v1V43.5v2.875V47.875"></path>
+  <path fill="#472b29" d="M68.5,47.375c-0.276,0-0.5-0.224-0.5-0.5V43c0-0.276,0.224-0.5,0.5-0.5S69,42.724,69,43v3.875 C69,47.151,68.776,47.375,68.5,47.375z"></path>
+  <g>
+    <path fill="#472b29" d="M68.5,40.5c-0.276,0-0.5-0.224-0.5-0.5v-2c0-0.276,0.224-0.5,0.5-0.5S69,37.724,69,38v2 C69,40.276,68.776,40.5,68.5,40.5z"></path>
+  </g>
+  <g>
+    <path fill="#472b29"
+      d="M64,69H36c-2.757,0-5-2.243-5-5V36c0-2.757,2.243-5,5-5h25.375c0.276,0,0.5,0.224,0.5,0.5 s-0.224,0.5-0.5,0.5H36c-2.206,0-4,1.794-4,4v28c0,2.206,1.794,4,4,4h28c2.206,0,4-1.794,4-4V49.625c0-0.276,0.224-0.5,0.5-0.5 s0.5,0.224,0.5,0.5V64C69,66.757,66.757,69,64,69z">
+    </path>
+  </g>
+  <path fill="#fdfcee" d="M41 43h-2c-1.65 0-3-1.35-3-3l0 0c0-1.65 1.35-3 3-3h2c1.65 0 3 1.35 3 3l0 0C44 41.65 42.65 43 41 43zM61 43H49c-1.65 0-3-1.35-3-3l0 0c0-1.65 1.35-3 3-3h12c1.65 0 3 1.35 3 3l0 0C64 41.65 62.65 43 61 43z"></path>
+  <g>
+    <path fill="#472b29"
+      d="M41 36.5h-2c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5h2c1.93 0 3.5-1.57 3.5-3.5S42.93 36.5 41 36.5zM41 42.5h-2c-1.378 0-2.5-1.121-2.5-2.5s1.122-2.5 2.5-2.5h2c1.378 0 2.5 1.121 2.5 2.5S42.378 42.5 41 42.5zM61 36.5H49c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5h12c1.93 0 3.5-1.57 3.5-3.5S62.93 36.5 61 36.5zM61 42.5H49c-1.378 0-2.5-1.121-2.5-2.5s1.122-2.5 2.5-2.5h12c1.379 0 2.5 1.121 2.5 2.5S62.379 42.5 61 42.5z">
+    </path>
+  </g>
+  <path fill="#fdfcee" d="M41 53h-2c-1.65 0-3-1.35-3-3l0 0c0-1.65 1.35-3 3-3h2c1.65 0 3 1.35 3 3l0 0C44 51.65 42.65 53 41 53zM61 53H49c-1.65 0-3-1.35-3-3l0 0c0-1.65 1.35-3 3-3h12c1.65 0 3 1.35 3 3l0 0C64 51.65 62.65 53 61 53z"></path>
+  <g>
+    <path fill="#472b29"
+      d="M41 46.5h-2c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5h2c1.93 0 3.5-1.57 3.5-3.5S42.93 46.5 41 46.5zM41 52.5h-2c-1.378 0-2.5-1.121-2.5-2.5s1.122-2.5 2.5-2.5h2c1.378 0 2.5 1.121 2.5 2.5S42.378 52.5 41 52.5zM61 46.5H49c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5h12c1.93 0 3.5-1.57 3.5-3.5S62.93 46.5 61 46.5zM61 52.5H49c-1.378 0-2.5-1.121-2.5-2.5s1.122-2.5 2.5-2.5h12c1.379 0 2.5 1.121 2.5 2.5S62.379 52.5 61 52.5z">
+    </path>
+  </g>
+  <path fill="#fdfcee" d="M41 63h-2c-1.65 0-3-1.35-3-3l0 0c0-1.65 1.35-3 3-3h2c1.65 0 3 1.35 3 3l0 0C44 61.65 42.65 63 41 63zM61 63H49c-1.65 0-3-1.35-3-3l0 0c0-1.65 1.35-3 3-3h12c1.65 0 3 1.35 3 3l0 0C64 61.65 62.65 63 61 63z"></path>
+  <g>
+    <path fill="#472b29"
+      d="M41 56.5h-2c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5h2c1.93 0 3.5-1.57 3.5-3.5S42.93 56.5 41 56.5zM41 62.5h-2c-1.378 0-2.5-1.121-2.5-2.5s1.122-2.5 2.5-2.5h2c1.378 0 2.5 1.121 2.5 2.5S42.378 62.5 41 62.5zM61 56.5H49c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5h12c1.93 0 3.5-1.57 3.5-3.5S62.93 56.5 61 56.5zM61 62.5H49c-1.378 0-2.5-1.121-2.5-2.5s1.122-2.5 2.5-2.5h12c1.379 0 2.5 1.121 2.5 2.5S62.379 62.5 61 62.5z">
+    </path>
+  </g>
+</svg>
+
+  <div class="wrapper">
+    <h2>Task List</h2>
+    <p></p>
+    <ul class="plates">
+      <li>Loading Tasks...</li>
+    </ul>
+    <form class="add-items">
+      <input type="text" name="item" placeholder="Item Name" required>
+      <input type="submit" value="+ Add Task"><hr>
+      <input type="button" value="Check All" onclick="checkAll()">
+      <input type="button" value="Uncheck All" onclick="uncheckAll()">
+      <input type="button" value="Delete💥" onclick="deleteAll()">
+      <br><span style="font-size:10px;">**Added the above extra buttons...</span>
+    </form>
+  </div>
+
+  <script>
+    const addItems = document.querySelector('.add-items');
+    const itemsList = document.querySelector('.plates');
+    let items = JSON.parse(localStorage.getItem('items')) || [];
+
+function addItem (e) {
+  e.preventDefault();
+  const text = (this.querySelector('[name=item]')).value;
+  const item = {
+    text,
+    done: false
+  }
+  items.push(item)
+  populateList(items, itemsList);
+  localStorage.setItem('items', JSON.stringify(items));
+this.reset();
+}
+function populateList(plates=[], platesList) {
+  platesList.innerHTML = plates.map((plate, i) => {
+    return `
+    <li>
+      <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''}/>
+      <label for="item${i}">${plate.text}</label>
+    </li>
+    `;
+  }).join('');
+}
+
+function toggleDone(e) {
+  // this is event delegation where we listen for event on something higher
+  // and then check if its the actual this that we want as it could trigger a few more things
+  if (!e.target.matches('input')) return;
+  const elem = e.target
+  const index = elem.dataset.index;
+  items[index].done = !items[index].done;
+  localStorage.setItem('items', JSON.stringify(items));
+  populateList(items, itemsList);
+}
+function checkAll(e) {
+  const checkBox = document.querySelectorAll('[type=checkbox]');
+  if (checkBox) {
+    checkBox.forEach((box, index) => {
+      box.checked = true;
+      items[index].done = true;
+    })
+  }
+  localStorage.setItem('items', JSON.stringify(items));
+  // populateList(items, itemsList);
+}
+
+function uncheckAll(e) {
+  const checkBox = document.querySelectorAll('[type=checkbox]');
+  if (checkBox) {
+    checkBox.forEach((box, index) => {
+      box.checked = false;
+      items[index].done = false;
+    })
+  }
+  localStorage.setItem('items', JSON.stringify(items));
+}
+
+function deleteAll(e) {
+  const checkBox = document.querySelectorAll('[type=checkbox]');
+  const taskItems = document.querySelectorAll('li');
+  if (checkBox && taskItems) {
+    checkBox.forEach((box, index) => {
+      if (box.checked == true) {
+        taskItems[index].remove();
+        console.log(items[index]);
+        items.splice(index,1);
+        localStorage.setItem('items', JSON.stringify(items));
+      }
+
+    })
+  }
+}
+addItems.addEventListener("submit", addItem);
+itemsList.addEventListener('click', toggleDone)
+populateList(items, itemsList);
+
+  </script>
+</body>
+
+</html>

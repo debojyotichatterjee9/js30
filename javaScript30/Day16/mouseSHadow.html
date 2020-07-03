@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>🌈Mouse Shadow</title>
+</head>
+
+<body>
+
+  <div class="hero">
+    <h1 contenteditable>🔥JavaScript!🔥</h1>
+  </div>
+
+  <style>
+    html {
+      color: black;
+      font-family: sans-serif;
+      background: url(./img/background.svg) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    h1 {
+      text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+      font-size: 100px;
+    }
+  </style>
+
+  <script>
+    const hero = document.querySelector('.hero');
+    const text = document.querySelector('h1');
+    const walk = 600; // 100px
+
+    function shadow(e) {
+      // using ES6 destructuring method to assign variables
+      const {
+        offsetWidth: width,
+        offsetHeight: height
+      } = hero;
+      let {
+        offsetX: x,
+        offsetY: y
+      } = e;
+
+      if (this != e.target) {
+        x = x + e.target.offsetLeft;
+        y = y + e.target.offsetTop;
+      }
+
+      const xwalk = Math.round((x / width * walk) - (walk / 2));
+      const ywalk = Math.round((y / height * walk) - (walk / 2));
+      
+      function random_rgba() {
+        var o = Math.round,
+          r = Math.random,
+          s = 255;
+        return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+      }
+        color1 = random_rgba();color2 = random_rgba();color3 = random_rgba();color4 = random_rgba();
+      text.style.textShadow = `${xwalk}px ${ywalk}px 0 ${color1},
+      ${xwalk * -1}px ${ywalk}px 0 ${color2},
+      ${ywalk}px ${xwalk * -1}px 0 ${color3},
+      ${ywalk * -1}px ${xwalk}px 0 ${color4}`
+
+    }
+
+    hero.addEventListener('mousemove', shadow)
+  </script>
+</body>
+
+</html>

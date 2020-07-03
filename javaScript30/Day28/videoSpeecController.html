@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <title>🌈Video Controller</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop controls></video>
+    <div class="speed">
+      <div class="speed-bar">1X</div>
+    </div>
+  </div>
+  
+  <script>
+    const speed = document.querySelector('.speed');
+    const bar = document.querySelector('.speed-bar');
+    const video = document.querySelector('.flex');
+
+    function visualChanges(event, speedBar) {
+      const y = event.pageY - speedBar.offsetTop;
+      const percent = y / speedBar.offsetHeight;
+      const [min, max] = [0.4, 4]; //ES6 destructuring method to declare variables and assign values to them
+      const height = `${Math.round((percent * 100))}%`;
+      return {percent, min, max, height};
+    }
+
+    function videoChanges(params) {
+      const playBackRate = params.percent * (params.max - params.min) + params.min;
+      bar.style.height = params.height;
+      bar.textContent = `${playBackRate.toFixed(2)}X`;
+      video.playbackRate = playBackRate;
+    }
+
+    // I have separated the visual changes and the video speed changes into two separate functions
+    // to make it more functional/modular
+    function handleSpeed(event) {
+      const speedBar = this;
+      const params = visualChanges(event, speedBar);
+      videoChanges(params);
+    }
+
+    //handleSpeed will be called on the mousemove event on the spee bar
+    speed.addEventListener('mousemove', handleSpeed);
+  </script>
+</body>
+
+</html>

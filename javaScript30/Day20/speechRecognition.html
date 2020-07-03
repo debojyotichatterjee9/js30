@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>🌈Speech Recognition</title>
+</head>
+
+<body>
+  <h2>🗣Speak it!</h2>
+  <div class="words" contenteditable>
+  </div>
+
+  <script>
+    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const recognition = new SpeechRecognition();
+    recognition.interimResults = true;
+
+    let p = document.createElement('p');
+    const words = document.querySelector('.words');
+    words.appendChild(p);
+
+    recognition.addEventListener('result', event => {
+      const transcript = Array.from(event.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join('');
+
+      p.textContent = transcript;
+      if (event.results[0].isFinal) {
+        p = document.createElement('p');
+        words.appendChild(p);
+      }
+      if (transcript.includes('fire')) {
+        var h = document.createElement("H1");
+        var t = document.createTextNode('🔥');
+        h.appendChild(t);
+        document.body.appendChild(h);
+        setTimeout(function(){ document.body.removeChild(document.querySelector('h1')); }, 1000);
+        }
+    });
+
+    recognition.addEventListener('end', recognition.start);
+
+    recognition.start();
+  </script>
+
+
+  <style>
+    html {
+      box-sizing: border-box;
+      background: url('./img/background.svg') center no-repeat;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: Futura,"Trebuchet MS",Arial,sans-serif;
+      font-size: 10px;
+    }
+
+    body {
+      /* background: #061433; */
+      font-family: 'helvetica neue';
+      font-weight: 200;
+      font-size: 20px;
+    }
+
+    .words {
+      max-width: 500px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 10px 10px 0 rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem 1rem 5rem;
+      background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+      background-size: 100% 3rem;
+      position: relative;
+      line-height: 3rem;
+    }
+
+    p {
+      margin: 0 0 3rem;
+    }
+    h2 {
+      color: white;
+      font-size: 100px;
+      text-shadow: 10px 10px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .words:before {
+      content: '';
+      position: absolute;
+      width: 4px;
+      top: 0;
+      left: 30px;
+      bottom: 0;
+      border: 1px solid;
+      border-color: transparent #efe4e4;
+    }
+  </style>
+</body>
+
+</html>

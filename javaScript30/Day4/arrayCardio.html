@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>🌈Array Cardio</title>
+</head>
+<body>
+
+<style type="text/css">
+	html {
+  background: url(./background/instruction.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
+
+<script type="text/javascript">
+
+//---------------------------------------------------------VARIABLE DECLARATIONS---------------------------------------------------------//
+
+	 const inventors = [
+      {
+      	first: 'Albert',
+      	last: 'Einstein',
+      	year: 1879,
+      	passed: 1955
+      },
+      {
+      	first: 'Isaac',
+      	last: 'Newton',
+      	year: 1643,
+      	passed: 1727
+  	  },
+      {
+      	first: 'Galileo',
+      	last: 'Galilei',
+      	year: 1564,
+      	passed: 1642
+      },
+      {
+      	first: 'Marie',
+      	last: 'Curie',
+      	year: 1867,
+      	passed: 1934
+      },
+      {
+      	first: 'Johannes',
+      	last: 'Kepler',
+      	year: 1571,
+      	passed: 1630
+      },
+      {
+      	first: 'Nicolaus',
+      	last: 'Copernicus',
+      	year: 1473,
+      	passed: 1543
+      },
+      {
+      	first: 'Max',
+      	last: 'Planck',
+      	year: 1858,
+      	passed: 1947
+      },
+      {
+      	first: 'Katherine',
+      	last: 'Blodgett',
+      	year: 1898,
+      	passed: 1979
+      },
+      {
+      	first: 'Ada',
+      	last: 'Lovelace',
+      	year: 1815,
+      	passed: 1852
+      },
+      {
+      	first: 'Sarah E.',
+      	last: 'Goode',
+      	year: 1855,
+      	passed: 1905
+      },
+      {
+      	first: 'Lise',
+      	last: 'Meitner',
+      	year: 1878,
+      	passed: 1968
+      },
+      {
+      	first: 'Hanna',
+      	last: 'Hammarström',
+      	year: 1829,
+      	passed: 1909
+      }
+    ];
+
+    const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
+
+		const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+
+//---------------------------------------------------------FUNCTIONS AND LOGS---------------------------------------------------------//
+console.log(`%c Array Cardio`, `font-size: 50px;
+	-webkit-text-stroke: 1px black;
+   color: white;
+   text-shadow:
+       3px 3px 0 grey,
+     -1px -1px 0 grey,
+      1px -1px 0 grey,
+      -1px 1px 0 grey,
+       1px 1px 0 grey;
+			 `);
+
+console.group(`%cVariables Declared`, `font-size: 14px; color: #4888f0`);
+console.groupCollapsed(`%cDeclared Array of Object`, `font-size: 13px; color: #f03a3a`)
+console.log(inventors);
+console.groupEnd();
+console.groupCollapsed(`%cDeclared Arrays`, `font-size: 13px; color: #f03a3a`);
+console.log(people);
+console.log(data);
+console.groupEnd();
+console.groupEnd();
+
+
+     // Array.prototype.filter()
+    // 1. Filter the list of inventors for those who were born in the 1500's
+
+		const fifteen = inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600);
+
+		console.groupCollapsed(`%c1. Array.prototype.filter()`, `font-size: 14px; color: #4888f0`);
+		console.log(`//# Filter the list of inventors for those who were born in the 1500's.
+		const fifteen = inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600);
+		console.table(fifteen);
+		`);
+
+    console.table(fifteen);
+		console.groupEnd();
+
+    // Array.prototype.map()
+    // 2. Give us an array of the inventors' first and last names
+
+		const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+
+		console.groupCollapsed(`%c2. Array.prototype.map()`, `font-size: 14px; color: #4888f0`);
+		console.log("//# Give us an array of the inventors' first and last names.\n\tconst fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);\n\tconsole.log(fullNames);\n");
+
+    console.log(fullNames);
+		console.groupEnd();
+
+    // Array.prototype.sort() - Ascending
+    // 3. Sort the inventors by birthdate, oldest to youngest
+
+    /*const orderedList = inventors.sort(function (a, b) {
+    	if (a.year > b.year) {
+    		return 1;
+    	}
+    	else {
+    		return -1;
+    	}
+    })*/
+    // Using ternary operator
+
+    const orderedList = inventors.sort((a, b) => a.year > b.year ? 1 : -1);
+
+		console.groupCollapsed(`%c3. Array.prototype.sort() - Ascending`, `font-size: 14px; color: #4888f0`);
+		console.log("//# Sort the inventors by birthdate, oldest to youngest.")
+		console.log("const orderedList = inventors.sort(function (a, b) {\n\tif (a.year > b.year) {\n\t\treturn 1;\n\t}\n\telse {\n\t\treturn -1;\n\t}\n})");
+		console.log("\nAlternate Solution using Ternary operator\n")
+		console.log("//# Sort the inventors by birthdate, oldest to youngest\n" +
+		"\t\tconst orderedList = inventors.sort((a, b) => a.year > b.year ? 1 : -1);\n" +
+    "\t\tconsole.log(`Array.prototype.sort() - Ascending`);")
+
+    console.table(orderedList);
+		console.groupEnd();
+
+    // Array.prototype.reduce()
+    // 4. How many years did all the inventors live?
+
+    const totalYears = inventors.reduce((total, inventor) => {
+    	return total + (inventor.passed - inventor.year)
+    }, 0);
+
+		console.groupCollapsed(`%c4. Array.prototype.reduce()`, `font-size: 14px; color: #4888f0`);
+		console.log("//# How many years did all the inventors live?");
+		console.log("const totalYears = inventors.reduce((total, inventor) => {\n\treturn total + (inventor.passed - inventor.year)\n\t}, 0);");
+
+		console.log(`Total Years: ${totalYears}`);
+		console.groupEnd();
+
+    // 5. Sort the inventors by years lived
+
+    const oldest = inventors.sort(function (a, b) {
+    	const last = a.passed - a.year;
+    	const next = b.passed - b.year;
+    	return last > next ? -1 : 1;
+    });
+
+		console.groupCollapsed(`%c5. Array.prototype.sort()`, `font-size: 14px; color: #4888f0`);
+		console.log("//# Sort the inventors by years lived.");
+		console.log("const oldest = inventors.sort(function (a, b) {\n\tconst last = a.passed - a.year;\n\tconst next = b.passed - b.year;\n\treturn last > next ? -1 : 1;\n});")
+
+    console.table(oldest)
+		console.groupEnd();
+
+     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
+    // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    // window.location.assign('https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris');
+
+    // const category = document.querySelector('.mw-content-ltr .mw-category');
+    // const links = Array.from(category.querySelectorAll('a'));
+    // const de = links
+    // 				.map(link => link.textContent)
+    // 				.filter(streetName => streetName.includes('de'));
+    // console.log(de);
+
+		console.groupCollapsed(`%c6. Array.Prototype.map() and Array.Prototype.filter()`, `font-size: 14px; color: #4888f0`);
+		console.log(`//# Visit: https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+			Create a list of Boulevards in Paris that contain 'de' anywhere in the name
+			Run the following code in the consoel of the Wikipedia Page:
+			`)
+
+			console.log("const category = document.querySelector('.mw-content-ltr .mw-category');\nconst links = Array.from(category.querySelectorAll('a'));\nconst de = links\n\t\t.map(link => link.textContent)\n\t\t.filter(streetName => streetName.includes('de'));\n\tconsole.log(de);")
+			console.groupEnd();
+
+
+
+     // 7. sort Exercise
+    // Sort the people alphabetically by last name
+
+    const alpha = people.sort((last, next) => {
+    	const [alast, afirst] = last.split(', ');
+    	const [bnext, bfirst] = next.split(', ');
+    	return alast > bnext ? 1 : -1
+    });
+
+		console.groupCollapsed(`%c7. Array.Prototype.sort()`, `font-size: 14px; color: #4888f0`);
+		console.log(`//# Sort the people alphabetically by last name.`)
+		console.log("const alpha = people.sort((last, next) => {\n\tconst [alast, afirst] = last.split(', ');\n\tconst [bnext, bfirst] = next.split(', ');\n\treturn alast > bnext ? 1 : -1\n});");
+
+    console.log(alpha);
+		console.groupEnd();
+
+    // 8. Reduce Exercise
+    // Sum up the instances of each of data array
+
+    const transportation = data.reduce((obj, item) => {
+    	if (!obj[item]) {
+    		obj[item] = 0;
+    	}
+    	obj[item]++;
+    	return obj;
+    }, {});
+
+		console.groupCollapsed(`%c8. Array.Prototype.reduce()`, `font-size: 14px; color: #4888f0`);
+		console.log(`//# Sum up the instances of each of data array.`)
+		console.log("const transportation = data.reduce((obj, item) => {\n\tif (!obj[item]) {\n\t\t	obj[item] = 0;\n\t}\n\tobj[item]++;\n\treturn obj;\n}, {});");
+
+		console.log(transportation);
+		console.groupEnd();
+</script>
+</body>
+</html>
